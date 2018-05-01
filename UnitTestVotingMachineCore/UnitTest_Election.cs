@@ -35,7 +35,7 @@ namespace UnitTestVotingMachineCore
         public void TestCreateElection()
         {
             Election testElection = new Election("TEST ELECTION",
-                eligibleVoters, candidates);
+                eligibleVoters, 1, candidates);
             Assert.IsNotNull(testElection);
         }
 
@@ -44,7 +44,7 @@ namespace UnitTestVotingMachineCore
         {
             string expectedResult = "Vote Accepted!";
             Election testElection = new Election("TEST ELECTION",
-                eligibleVoters, candidates);
+                eligibleVoters, 1, candidates);
 
             Assert.AreEqual(expectedResult,
                 testElection.ProcessVote(12345, new List<string>() { "Zak Kastl" }));
@@ -55,7 +55,7 @@ namespace UnitTestVotingMachineCore
         {
             string expectedResult = "Vote Accepted!";
             Election testElection = new Election("TEST ELECTION",
-                eligibleVoters, candidates);
+                eligibleVoters, 1, candidates);
 
             Assert.AreEqual(expectedResult,
                 testElection.ProcessVote(12345, new List<string>() { "Zak Kastl", "Vy Vo" }));
@@ -66,7 +66,7 @@ namespace UnitTestVotingMachineCore
         {
             string expectedResult = "Invalid Candidate(s)";
             Election testElection = new Election("TEST ELECTION",
-                eligibleVoters, candidates);
+                eligibleVoters, 1, candidates);
 
             Assert.AreEqual(expectedResult, 
                 testElection.ProcessVote(12345, new List<string>() { "Bilbo Baggins" }));
@@ -77,7 +77,7 @@ namespace UnitTestVotingMachineCore
         {
             string expectedResult = "Invalid Candidate(s)";
             Election testElection = new Election("TEST ELECTION",
-                eligibleVoters, candidates);
+                eligibleVoters, 1, candidates);
 
             Assert.AreEqual(expectedResult,
                 testElection.ProcessVote(12345, new List<string>() {"Zak Kastl", "Bilbo Baggins" }));
@@ -88,7 +88,7 @@ namespace UnitTestVotingMachineCore
         {
             string expectedResult = "This User is not eligible to vote.";
             Election testElection = new Election("TEST ELECTION",
-                eligibleVoters, candidates);
+                eligibleVoters, 1, candidates);
 
             Assert.AreEqual(expectedResult,
                 testElection.ProcessVote(00000, new List<string>() { "Zak Kastl" }));
@@ -99,7 +99,7 @@ namespace UnitTestVotingMachineCore
         {
             string expectedResult = "User cannot vote more than once per election";
             Election testElection = new Election("TEST ELECTION",
-                eligibleVoters, candidates);
+                eligibleVoters, 1, candidates);
 
             testElection.ProcessVote(12345, new List<string>() { "Zak Kastl" });
 
@@ -111,7 +111,7 @@ namespace UnitTestVotingMachineCore
         public void Test_AllVotersVoted_True()
         {
             Election testElection = new Election("TEST ELECTION",
-                eligibleVoters, candidates);
+                eligibleVoters, 1, candidates);
 
             foreach (int voter in eligibleVoters)
                 testElection.ProcessVote(voter, new List<string>() { "Zak Kastl" });
@@ -123,7 +123,7 @@ namespace UnitTestVotingMachineCore
         public void Test_AllVotersVoted_False()
         {
             Election testElection = new Election("TEST ELECTION",
-                eligibleVoters, candidates);
+                eligibleVoters, 1, candidates);
 
             Assert.IsFalse(testElection.HaveAllVotersVoted());
         }
