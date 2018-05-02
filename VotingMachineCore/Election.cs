@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace VotingMachineCore
 {
     public class Election
     {
+        public Guid ElectionId { get; private set; }
         public Dictionary<int, List<string>> Vote { get; private set; }
         public string Title { get; private set; }
         public List<int> EligibleVoters { get; private set; }
@@ -13,10 +15,12 @@ namespace VotingMachineCore
 
         public Election(string title, List<int> eligibleVoters, int candidateCount = 1, List<string> candidates = null)
         {
+            ElectionId = Guid.NewGuid();
             Vote = new Dictionary<int, List<string>>();
             Title = title;
             EligibleVoters = new List<int>(eligibleVoters);
             Candidates = candidates ?? new List<string>();
+            CandidateCount = candidateCount;
         }
 
         public string ProcessVote(int voterId, List<string> candidates)

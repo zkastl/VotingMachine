@@ -19,9 +19,26 @@ namespace VotingMachineGui
 {
     public sealed partial class VotingScreenControl : UserControl
     {
+        private VotingScreenControlViewModel vscvm;
         public VotingScreenControl()
         {
-            this.InitializeComponent();
+            vscvm = new VotingScreenControlViewModel();
+            DataContext = vscvm;
+            InitializeComponent();
+        }
+
+        private void CandidateBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CandidateBox.SelectedItems.Count > vscvm.CurrentElection.CandidateCount)
+                CandidateBox.SelectedItems.RemoveAt(0);
+        }
+
+        private void VoteButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> candidates = new List<string>();
+            foreach (object o in CandidateBox.SelectedItems)
+                candidates.Add((string)o);
+            vscvm.CurrentElection.ProcessVote(12345, candidates);
         }
     }
 }

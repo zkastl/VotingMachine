@@ -11,22 +11,20 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="100px" />
+            <RowDefinition Height="100px" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Voting for State Deputy."/>
-        <TextBlock Grid.Row="1" Text="Please vote for 1."/>
+        <TextBlock Grid.Row="0" Text="{Binding ElectionName}" />
+        <TextBlock Grid.Row="1" Text="{Binding NumberToElect}"/>
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
-            <ListBox SelectionMode="Multiple">
-                <ListBoxItem Content="Hello" />
-                <ListBoxItem Content="Hello" />
-                <ListBoxItem Content="Hello" />
-                <ListBoxItem Content="Hello" />
-                <ListBoxItem Content="Hello" />
+            <ListBox Name="CandidateBox" SelectionMode="{Binding MultiSelect}"
+                     ItemsSource="{Binding Candidates}"
+                     SelectionChanged="CandidateBox_SelectionChanged">
             </ListBox>
         </ScrollViewer>
-        <Button Grid.Row="3" Margin="0,0,20, 20" Content="VOTE!" />
+        <Button Name="VoteButton" Grid.Row="3" Margin="0,0,20, 20" 
+                Content="VOTE!" Click="VoteButton_Click" />
     </Grid>
 </UserControl>

@@ -99,9 +99,11 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SlimBindableCommand.cs" />
     <Compile Include="VotingScreenControl.xaml.cs">
       <DependentUpon>VotingScreenControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VotingScreenControlViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
